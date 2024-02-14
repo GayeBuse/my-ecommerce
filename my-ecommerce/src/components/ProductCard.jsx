@@ -1,6 +1,5 @@
 import React from "react";
 import productcardata from "../data/productcardata";
-import "./pc.css";
 export default function ProductCard() {
   return (
     <div className="">
@@ -8,7 +7,7 @@ export default function ProductCard() {
         <h2 className="text-xl text-[#737373]">Featured Products</h2>
         <h1 className="text-2xl font-bold">BESTSELLER PRODUCTS</h1>
         <p className="text-sm text-[#737373]">
-          Problems trying to resolve the conflict between{" "}
+          Problems trying to resolve the conflict between
         </p>
       </div>
       <div className="flex gap-[50px] flex-wrap items-center justify-center pb-[80px] max-w-[90rem] mx-auto">
@@ -22,17 +21,17 @@ export default function ProductCard() {
             <div className="flex flex-col items-center py-[30px] gap-[10px]">
               <h2 className="text-[16px] font-semibold">{product.title}</h2>
               <p className="text-[14px] text-[#737373] font-bold">
-                Category: {product.category}
+                {product.category}
               </p>
               <div className="flex gap-[5px] py-[5px] px-[3px] text-[16px] font-bold">
-                <p className="text-[#BDBDBD]">Price: {product.price}</p>
-                <p className="text-[#23856D]">Sale: {product.sale}</p>
+                <p className="text-[#BDBDBD]"> {product.price}</p>
+                <p className="text-[#23856D]"> {product.sale}</p>
               </div>
               <div className="color-options">
                 {product.colors.map((color, colorIndex) => (
                   <span
                     key={colorIndex}
-                    className="color-option"
+                    className="inline-block w-5 h-5 rounded-2xl mr-1"
                     style={{ backgroundColor: color }}
                   ></span>
                 ))}
