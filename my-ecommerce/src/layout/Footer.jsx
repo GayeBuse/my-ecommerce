@@ -117,7 +117,6 @@ export default function Footer() {
           Made With Love By Finland All Right Reserved
         </p>
       </div>
-      };
     </footer>
   );
 }
