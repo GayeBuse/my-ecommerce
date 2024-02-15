@@ -56,7 +56,7 @@ export default function ProductList() {
           </div>
         </div>
 
-        <div className="flex gap-[50px] flex-wrap items-center justify-center pb-[80px] w-[80%] mx-auto mt-12">
+        <div className="flex gap-[50px] flex-wrap items-center justify-center pb-[80px] w-[90%] mx-auto mt-12">
           {productlist.map((product, index) => (
             <div key={index}>
               <Link to={`/shopping/${product.id}`}>

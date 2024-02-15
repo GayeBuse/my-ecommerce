@@ -3,7 +3,7 @@ import Advert from "../Advert";
 export default function Bestseller() {
   return (
     <>
-      <div className="bg-[#FAFAFA] w-[80%] mx-auto">
+      <div className="bg-[#FAFAFA] w-[90%] mx-auto">
         <h1 className=" flex  text-2xl font-bold p-3 ">BESTSELLER PRODUCTS</h1>
         <div className="flex gap-[50px] flex-wrap items-center justify-center pb-[80px]">
           {productcardata.map((product, index) => (

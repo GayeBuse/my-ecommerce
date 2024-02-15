@@ -1,6 +1,6 @@
 import React from "react";
 import productcardata from "../data/productcardata";
-import "./pc.css";
+
 export default function ProductCard() {
   return (
     <div className="">
@@ -32,7 +32,7 @@ export default function ProductCard() {
                 {product.colors.map((color, colorIndex) => (
                   <span
                     key={colorIndex}
-                    className="color-option"
+                    className="inline-block w-5 h-5 rounded-2xl mr-1"
                     style={{ backgroundColor: color }}
                   ></span>
                 ))}

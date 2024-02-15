@@ -48,7 +48,6 @@ export default function Header() {
           <nav className="flex gap-5 flex-wrap items-center text-xs font-bold text-[#737373]">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/shopping">Shop</NavLink>
-
             <NavLink to="/about">About</NavLink>
             <NavLink to="/team">Team</NavLink>
             <NavLink to="/contact">Contact</NavLink>
