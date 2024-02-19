@@ -21,14 +21,17 @@ const Productt = () => {
   // Ürünü ekrana yazdır
   return (
     <div className="bg-[#FAFAFA]">
-      <nav className=" pl-36 flex items-center gap-2 px-">
+      <nav className=" pl-36 flex items-center gap-2 px- ">
         <div className=" text-slate-800 text-sm font-bold ">Home</div>
         <FaChevronRight />
         <div className="text-slate-400 text-sm font-bold ">Shop</div>
       </nav>
-      <div className="flex  w-[80%] mx-auto">
+      <div className="flex  w-[80%] mx-auto flex-wrap ">
         <div className="flex  justify-between">
-          <img className="w-[506px] h-[450px] object-cover" src={Product.img} />
+          <img
+            className="w-[506px] h-[450px] object-cover "
+            src={Product.img}
+          />
         </div>
         <div className="mx-auto my-auto basis-2/5 flex flex-col gap-5">
           <div className="">

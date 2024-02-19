@@ -3,12 +3,7 @@ import { HiViewGrid } from "react-icons/hi";
 import categorydata from "../data/categorydata";
 import { CiViewList } from "react-icons/ci";
 import productlist from "../data/productList";
-import Vector from "../../public/vector/Vector.png";
-import Vector1 from "../../public/vector/Vector1.png";
-import Vector2 from "../../public/vector/Vector2.png";
-import Vector3 from "../../public/vector/Vector3.png";
-import Vector4 from "../../public/vector/Vector4.png";
-import Vector5 from "../../public/vector/Vector5.png";
+
 import { Link } from "react-router-dom";
 
 export default function ProductList() {
@@ -16,7 +11,7 @@ export default function ProductList() {
     <div className="font-['Montserrat']">
       <div>
         <div className="bg-[#FAFAFA] py-12">
-          <div className="flex justify-between w-[80%] mx-auto">
+          <div className="flex justify-between w-[80%] mx-auto sm:flex-col sm:justify-center sm:items-center sm:gap-8">
             <h2 className="text-2xl font-bold text-[#252B42]">SHOP</h2>
             <div className="flex justify-center items-center gap-3 ">
               <a href="#">Home</a>
@@ -24,12 +19,15 @@ export default function ProductList() {
               <h6>Shop</h6>
             </div>
           </div>
-          <div className="flex gap-3  justify-center flex-wrap mt-8 ">
+          <div className="flex gap-3  justify-center flex-wrap mt-8  ">
             {categorydata.map((item, index) => (
               /*relative sınıf, içindeki absolute pozisyonlandırılmış öğelerin, bu konteynıra göre konumlanmasını sağlar.*/
               <div key={index} className="relative">
-                <img src={item.img} />
-                <div className="absolute top-24 right-20 flex flex-col gap-2 ite">
+                <img
+                  src={item.img}
+                  className="sm:w-[332px] sm:h-[300px] object-cover sm:object-cover"
+                />
+                <div className="absolute top-24 right-20 flex flex-col gap-2 sm:justify-center sm:items-center sm:right-[7rem]">
                   <p className="text-base text-white font-bold">CLOTHES</p>
                   <p className="text-base text-white font-bold">5 ITEM</p>
                 </div>
@@ -37,11 +35,11 @@ export default function ProductList() {
             ))}
           </div>
         </div>
-        <div className="flex mx-auto justify-between items-center mt-4  w-[80%]">
+        <div className="flex mx-auto justify-between items-center mt-4  w-[80%] flex-wrap sm:justify-center">
           <label className="flex ">
             <p>Showing all 12 results</p>
           </label>
-          <div className="flex gap-2 justify-center items-center">
+          <div className="flex gap-2 justify-center items-center sm:w-1/2 ">
             <p>Views:</p>
             <HiViewGrid className="text-2xl" />
             <CiViewList className="text-2xl" />

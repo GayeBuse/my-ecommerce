@@ -2,5 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-  max-width: 1440px;
+  --fnt-montserrat: ;
 }

@@ -12,9 +12,11 @@ export default function About() {
     <>
       <div>
         <div className="flex justify-between flex-wrap ">
-          <div className="flex flex-col my-auto mx-auto gap-11">
-            <p className="text-[#252B42] font-bold text-base"> ABOUT COMPANY</p>
-            <h1 className="text-[#252B42] font-bold text-[3.625rem] ">
+          <div className="flex flex-col my-auto mx-auto gap-11  sm:justify-center sm:items-center ">
+            <p className="text-[#252B42] font-bold text-base sm:hidden">
+              ABOUT COMPANY
+            </p>
+            <h1 className="text-[#252B42] font-bold text-[3.625rem] sm:text-[40px] sm:mt-40 ">
               ABOUT US
             </h1>
             <p className="text-[#737373] w-[18rem]">
@@ -24,9 +26,9 @@ export default function About() {
               Get Quote Now
             </button>
           </div>
-          <img src={about} />
+          <img src={about} className="sm:mt-40" />
         </div>
-        <div className="flex justify-center items-center gap-48 flex-wrap">
+        <div className="flex justify-center items-center gap-48 flex-wrap sm:mt-10 sm:text-center sm:px-10 sm:gap-0">
           <div className="w-[25rem]">
             <p className="text-[#E74040] text-sm font-normal">
               Problems trying
@@ -53,7 +55,9 @@ export default function About() {
             <p className="text-base">Monthly Visitors</p>
           </div>
           <div>
-            <p className="text-[#252B42] text-[3.625rem] font-bold">15</p>
+            <p className="text-[#252B42] text-[3.625rem] font-bold flex justify-center">
+              15
+            </p>
             <p className="text-base">Countries Worldwide</p>
           </div>
           <div>
@@ -77,7 +81,7 @@ export default function About() {
             mechanics
           </p>
         </div>
-        <div className="flex justify-between  mt-[8%]">
+        <div className="flex justify-between  mt-[8%]  flex-wrap sm:justify-center">
           {about1.slice(0, 3).map((item) => (
             <div className="text-center flex flex-col gap-3" key={item.img}>
               <img src={item.img} alt="Media" />
@@ -100,21 +104,21 @@ export default function About() {
             <p className="text-[#252B42] text-[2.5rem] font-bold">
               Big Companies Are Here
             </p>
-            <p className="text-[#737373] text-sm w-[50%] mx-auto pb-5">
+            <p className="text-[#737373] text-sm w-[50%] mx-auto pb-5 sm:w-[120%] sm:justify-center sm:items-center ">
               Problems trying to resolve the conflict between the two major
               realms of Classical physics: Newtonian mechanics
             </p>
           </div>
 
-          <div className=" mx-auto flex justify-center items-center h-[636px] bg-blue-500">
+          <div className=" mx-auto flex justify-center items-center h-[636px] bg-blue-500 sm:w-[414px] sm:h-[520px] sm:bg-[#2A7CC7] ">
             <div className="flex justify-between w-full">
               <div className="w-1/2 text-white px-8 py-4 flex flex-col items-center justify-center">
-                <div className="text-left w-[500px]">
+                <div className="text-left w-[500px] sm:text-center sm:w-auto sm:pl-[9rem]">
                   <p className="text-[16px] font-bold mb-5">WORK WITH US</p>
-                  <p className="text-[40px] font-bold mb-2">
+                  <p className="text-[40px] font-bold mb-2 sm:w-64  ">
                     Now Let’s grow Yours
                   </p>
-                  <p>
+                  <p className="sm:w-64">
                     The gradual accumulation of information about atomic and
                     small-scale behavior during the first quarter of the 20th
                   </p>
@@ -125,7 +129,11 @@ export default function About() {
               </div>
 
               <div className=" ">
-                <img src={aboutp} alt="Resim" className=" object-cover  " />
+                <img
+                  src={aboutp}
+                  alt="Resim"
+                  className=" object-cover sm:hidden "
+                />
               </div>
             </div>
           </div>

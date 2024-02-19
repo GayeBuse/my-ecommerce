@@ -17,7 +17,7 @@ export default function Carousel() {
     },
   ];
   const caption = (
-    <div className=" text-white absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 text-lightText flex flex-col gap-5 ml-20">
+    <div className=" text-white absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 text-lightText flex flex-col gap-5 ml-20 sm:m-0  sm:items-center sm:sm:gap-3 sm:scale-[30%]">
       <h5 className="font-bold ">SUMMER 2020</h5>
       <h1 className="font-bold text-6xl tracking-wider">
         Vita Classic <br />

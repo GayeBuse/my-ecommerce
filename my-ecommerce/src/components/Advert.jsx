@@ -7,7 +7,7 @@ import { FaRedditAlien } from "react-icons/fa";
 
 export default function Advert() {
   return (
-    <div className="text-[#737373] mb-5 mt-5">
+    <div className="text-[#737373] mb-5 mt-5 sm:hidden">
       <div className="flex object-cover justify-between flex-wrap mx-auto w-[80%]">
         <FaHooli className="text-[8rem]" />
         <FaLyft className="text-[8rem]" />
