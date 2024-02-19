@@ -5,6 +5,14 @@ import { FaChevronRight } from "react-icons/fa6";
 export default function Blog() {
   return (
     <>
+      <div className="text-center flex flex-col gap-3 justift-center items-center mt-[4%] mb-[4%]">
+        <h6 className="text-[#23A6F0] text-sm font-bold"> Practice Advice </h6>
+        <h3 className="text-[#252B42] text-[40px] font-bold">Featured Posts</h3>
+        <p className="text-neutral-500 text-sm font-normal w-[40%]">
+          Problems trying to resolve the conflict between the two major realms
+          of Classical physics: Newtonian mechanics{" "}
+        </p>
+      </div>
       <div className="flex justify-between gap-10 items-center flex-wrap">
         {blogdata.map((blog, index) => (
           <div className="max-w-sm mx-auto " key={index}>

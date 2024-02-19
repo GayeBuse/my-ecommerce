@@ -2,10 +2,11 @@ import about from "../../public/about/about.png";
 import video from "../../public/about/video.png";
 import about1 from "../data/about1";
 import { FaInstagram } from "react-icons/fa";
-import Advert from "../components/Advert";
+
 import { FaFacebook } from "react-icons/fa";
 import { CiTwitter } from "react-icons/ci";
 import { FaCirclePlay } from "react-icons/fa6";
+import aboutp from "../../public/about/aboutp.png";
 export default function About() {
   return (
     <>
@@ -25,7 +26,7 @@ export default function About() {
           </div>
           <img src={about} />
         </div>
-        <div className="flex justify-center gap-48 flex-wrap">
+        <div className="flex justify-center items-center gap-48 flex-wrap">
           <div className="w-[25rem]">
             <p className="text-[#E74040] text-sm font-normal">
               Problems trying
@@ -42,7 +43,7 @@ export default function About() {
             </p>
           </div>
         </div>
-        <div className="flex justify-center gap-32 flex-wrap">
+        <div className="flex justify-center gap-32 flex-wrap mt-[8%]">
           <div>
             <p className="text-[#252B42] text-[3.625rem] font-bold">15K</p>
             <p className="text-base">Happy Customers</p>
@@ -60,23 +61,23 @@ export default function About() {
             <p className="text-base">Top Partners</p>
           </div>
         </div>
-        <div className="flex justify-center relative">
+        <div className="flex justify-center relative mt-[8%]">
           <img src={video} className="rounded-[1.25rem]" />
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2">
             <FaCirclePlay className="  text-[#23A6F0] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute text-6xl " />
           </div>
         </div>
-        <div className="flex flex-col w-[70%] mx-auto text-center gap-5 my-10">
-          <p className="text-[2.5rem] text-[#252B42] font-bold">
+        <div className="flex flex-col w-[70%] mx-auto text-center gap-5 my-10 mt-[20%] justify-center items-center">
+          <p className="text-[2.5rem] text-[#252B42] font-bold ">
             Meet Our Team
           </p>
-          <p className="text-[#737373] font-normal w-[45%]">
+          <p className="text-[#737373] font-normal w-[60%]">
             Problems trying to resolve the conflict <br />
             between the two major realms of Classical physics: Newtonian
             mechanics
           </p>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between  mt-[8%]">
           {about1.slice(0, 3).map((item) => (
             <div className="text-center flex flex-col gap-3" key={item.img}>
               <img src={item.img} alt="Media" />
@@ -104,7 +105,30 @@ export default function About() {
               realms of Classical physics: Newtonian mechanics
             </p>
           </div>
-          <Advert />
+
+          <div className=" mx-auto flex justify-center items-center h-[636px] bg-blue-500">
+            <div className="flex justify-between w-full">
+              <div className="w-1/2 text-white px-8 py-4 flex flex-col items-center justify-center">
+                <div className="text-left w-[500px]">
+                  <p className="text-[16px] font-bold mb-5">WORK WITH US</p>
+                  <p className="text-[40px] font-bold mb-2">
+                    Now Let’s grow Yours
+                  </p>
+                  <p>
+                    The gradual accumulation of information about atomic and
+                    small-scale behavior during the first quarter of the 20th
+                  </p>
+                  <button className="mt-3 w-[130px] h-[52px] rounded-[5px] border-1 border-[#FAFAFA]">
+                    Button
+                  </button>
+                </div>
+              </div>
+
+              <div className=" ">
+                <img src={aboutp} alt="Resim" className=" object-cover  " />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -2,10 +2,12 @@ import { FaInstagram, FaFacebook } from "react-icons/fa";
 import { CiTwitter } from "react-icons/ci";
 
 import React from "react";
+import Advert from "../components/Advert";
 
 export default function Footer() {
   return (
     <footer className="">
+      <Advert />
       <div className="bg-[#FAFAFA] py-[60px]">
         <div className="flex justify-between w-[80%] m-auto">
           <h3 className="text-[24px] font-bold ">Bandage</h3>

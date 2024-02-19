@@ -1,5 +1,5 @@
 import productcardata from "../../data/productcardata";
-import Advert from "../Advert";
+
 export default function Bestseller() {
   return (
     <>
@@ -26,7 +26,6 @@ export default function Bestseller() {
             </div>
           ))}
         </div>
-        <Advert />
       </div>
     </>
   );

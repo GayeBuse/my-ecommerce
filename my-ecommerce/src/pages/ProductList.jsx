@@ -87,16 +87,6 @@ export default function ProductList() {
             </div>
           ))}
         </div>
-        <div className=" ">
-          <div className="flex object-cover justify-between flex-wrap mx-auto w-[80%]">
-            <img src={Vector} alt="" className="" />
-            <img src={Vector1} alt="" className="" />
-            <img src={Vector2} alt="" className="" />
-            <img src={Vector3} alt="" className="" />
-            <img src={Vector4} alt="" className="" />
-            <img src={Vector5} alt="" className="" />
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -1,20 +1,20 @@
-import Vector from "../../public/vector/Vector.png";
-import Vector1 from "../../public/vector/Vector1.png";
-import Vector2 from "../../public/vector/Vector2.png";
-import Vector3 from "../../public/vector/Vector3.png";
-import Vector4 from "../../public/vector/Vector4.png";
-import Vector5 from "../../public/vector/Vector5.png";
+import { FaHooli } from "react-icons/fa";
+import { FaPiedPiperHat } from "react-icons/fa";
+import { FaStripe } from "react-icons/fa";
+import { FaAws } from "react-icons/fa";
+import { FaLyft } from "react-icons/fa";
+import { FaRedditAlien } from "react-icons/fa";
 
 export default function Advert() {
   return (
-    <div className=" mb-5">
+    <div className="text-[#737373] mb-5 mt-5">
       <div className="flex object-cover justify-between flex-wrap mx-auto w-[80%]">
-        <img src={Vector} alt="" className="" />
-        <img src={Vector1} alt="" className="" />
-        <img src={Vector2} alt="" className="" />
-        <img src={Vector3} alt="" className="" />
-        <img src={Vector4} alt="" className="" />
-        <img src={Vector5} alt="" className="" />
+        <FaHooli className="text-[8rem]" />
+        <FaLyft className="text-[8rem]" />
+        <FaPiedPiperHat className="text-[8rem]" />
+        <FaStripe className="text-[8rem]" />
+        <FaAws className="text-[8rem]" />
+        <FaRedditAlien className="text-[8rem]" />
       </div>
     </div>
   );
