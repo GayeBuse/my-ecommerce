@@ -15,8 +15,8 @@ import { NavLink } from "react-router-dom";
 export default function Header() {
   const { phone, mail, message } = data.header;
   return (
-    <header className="flex flex-col font-['Montserrat']">
-      <div className="p-5 bg-[#252B42] text-white ">
+    <header className="flex flex-col   font-['Montserrat']  ">
+      <div className="h-[38px] p-5 bg-[#252B42] text-white sm:hidden ">
         <div className="flex justify-between flex-wrap ">
           <div className="flex gap-2">
             <BsTelephone className="" />
@@ -42,20 +42,32 @@ export default function Header() {
           </div>
         </div>
       </div>
+
       <div className="flex justify-between py-6 px-8 flex-wrap  ">
         <div className="flex gap-[5rem]">
           <h1 className="font-bold text-2xl ">Bandage</h1>
-          <nav className="flex gap-5 flex-wrap items-center text-xs font-bold text-[#737373]">
+          <div className="hidden sm:flex sm:gap-8 sm:mr-10">
+            <CiSearch />
+            <CiShoppingCart />
+            <CiHeart />
+          </div>
+          <nav className=" flex gap-5 flex-wrap items-center text-xs font-bold text-[#737373] sm:hidden  ">
             <NavLink to="/">Home</NavLink>
+            <NavLink to="/shopping">Shop</NavLink>
             <NavLink to="/about">About</NavLink>
             <NavLink to="/team">Team</NavLink>
             <NavLink to="/contact">Contact</NavLink>
             <NavLink to="#">Pages</NavLink>
           </nav>
         </div>
-
-        <div className="flex gap-2 items-center text-[#23A6F0] ">
-          <div className="flex items-center">
+        <div className="hidden sm:flex sm:flex-col sm:gap-4 pl-[8rem] pt-[2rem] ">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/shopping">Shop</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/team">Team</NavLink>
+        </div>
+        <div className="flex gap-2 items-center text-[#23A6F0] sm:hidden ">
+          <div className="flex items-center sm:hidden  ">
             <IoPersonOutline className="" />
             <span className="mx-2 font-bold text-xs  ">Login</span>
             <span>/</span>
