@@ -14,12 +14,12 @@ export default function Description() {
         </nav>
       </div>
       <div className="">
-        <div className="flex  w-[80%] mx-auto gap-[4rem] flex-wrap ">
+        <div className="flex  w-[90%] mx-auto gap-[4rem] flex-wrap ">
           <div className="">
             <img src={product} className="" />
           </div>
 
-          <div className="flex basis-1/3 flex-col sm:basis-auto">
+          <div className="flex basis-1/4 flex-col sm:basis-auto">
             <div className="font-bold text-[24px] pb-[1.5rem]  ">
               the quick fox jumps over
             </div>
@@ -40,26 +40,41 @@ export default function Description() {
             </p>
           </div>
           <div className="flex flex-col text-sm text-[#737373] font-bold ">
-            <div className="font-bold text-[24px] pb-[1.5rem] text-black">
+            <div className="font-bold text-[24px] pt-3 pb-[1.5rem] text-black">
               the quick fox jumps over
             </div>
             <FaChevronRight />
-            <p> the quick fox jumps over the lazy dog</p>
+
+            <p className="flex justify-center">
+              the quick fox jumps over the lazy dog
+            </p>
             <FaChevronRight />
-            <p> the quick fox jumps over the lazy dog</p>
+            <p className="flex justify-center">
+              the quick fox jumps over the lazy dog
+            </p>
             <FaChevronRight />
-            <p> the quick fox jumps over the lazy dog</p>
+            <p className="flex justify-center">
+              the quick fox jumps over the lazy dog
+            </p>
             <FaChevronRight />
-            <p> the quick fox jumps over the lazy dog</p>
+            <p className="flex justify-center">
+              the quick fox jumps over the lazy dog
+            </p>
             <div className="font-bold text-[24px] pt-4 pb-[1.5rem] text-black">
               the quick fox jumps over
             </div>
             <FaChevronRight />
-            <p> the quick fox jumps over the lazy dog</p>
+            <p className="flex justify-center">
+              the quick fox jumps over the lazy dog
+            </p>
             <FaChevronRight />
-            <p> the quick fox jumps over the lazy dog</p>
+            <p className="flex justify-center ">
+              the quick fox jumps over the lazy dog
+            </p>
             <FaChevronRight />
-            <p> the quick fox jumps over the lazy dog</p>
+            <p className="flex justify-center ">
+              the quick fox jumps over the lazy dog
+            </p>
           </div>
         </div>
       </div>
