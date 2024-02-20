@@ -57,9 +57,15 @@ export default function Header() {
         <div className="flex gap-2 items-center text-[#23A6F0] ">
           <div className="flex items-center">
             <IoPersonOutline className="" />
-            <span className="mx-2 font-bold text-xs  ">Login</span>
-            <span>/</span>
-            <span className=" font-bold text-xs ">Register</span>
+            <nav>
+              <NavLink to="/signup" className="mx-2 font-bold text-xs  ">
+                Login
+              </NavLink>
+              <span>/</span>
+              <NavLink to="/signup" className=" font-bold text-xs ">
+                Register
+              </NavLink>
+            </nav>
           </div>
           <div className="flex gap-4 text-lg">
             <CiSearch />

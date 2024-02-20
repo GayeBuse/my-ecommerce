@@ -6,6 +6,7 @@ import Contact from "../pages/Contact.jsx";
 import About from "../pages/About.jsx";
 import Team from "../pages/Team.jsx";
 import Product from "../pages/Product.jsx";
+import SignUp from "../pages/SignUp.jsx";
 
 export default function PageContent() {
   return (
@@ -26,8 +27,11 @@ export default function PageContent() {
         <Route exact path="/team">
           <Team />
         </Route>
-        <Route path="/shopping/:productId">
+        <Route exact path="/shopping/:productId">
           <Product />
+        </Route>
+        <Route exact path="/signup">
+          <SignUp />
         </Route>
       </Switch>
     </div>
