@@ -36,12 +36,12 @@ export default function Team() {
                 className="w-full h-auto mb-[.3rem] lg:mb-0"
               />
             </div>
-            <div className="w-full lg:w-1/2 flex flex-wrap mb-[1rem]">
+            <div className="w-full lg:w-1/2 flex  mb-[1rem]">
               <div className="w-full lg:w-1/2 p-[.3rem]">
                 <img
                   src={team2}
                   alt="img"
-                  className="w-full h-auto mb-[2.2rem]"
+                  className="w-full h-auto mb-[2.2rem] "
                 />
                 <img
                   src={team1}
@@ -58,7 +58,7 @@ export default function Team() {
                 <img
                   src={team5}
                   alt="img"
-                  className="w-full h-auto mb-[2.2rem]"
+                  className="w-full h-auto mb-[2.2rem] "
                 />
               </div>
             </div>
@@ -86,11 +86,11 @@ export default function Team() {
           </div>
         ))}
       </div>
-      <div className="flex items-center justify-center flex-col gap-4">
+      <div className="flex items-center justify-center flex-col gap-4  sm:text-center">
         <p className="text-4xl font-bold leading-tight tracking-wide">
           Start your 14 days free trial
         </p>
-        <p className="text-base font-normal w-[500px] text-center text-[#737373]">
+        <p className="text-base font-normal w-[500px] text-center text-[#737373] sm:w-auto">
           Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
           RELIT official consequent.
         </p>
