@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import AxiosInstance from "../api/AxiosInstance";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 const mailValid =
   /^(([^<>()[\]\.,;:\s@"]+(\.[^<>()[\]\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -16,10 +18,14 @@ export default function SignUp() {
     handleSubmit,
     formState: { errors, isValid },
     watch,
-  } = useForm();
+    reset,
+  } = useForm({
+    mode: "onBlur",
+  }); /* Bu, kullanıcı bir input alanını terk ettiğinde (yani odak dışına çıktığında) hata mesajının görüntülenmesini sağlar.*/
   /*  watch fonksiyonu genellikle formdaki dinamik veya dinamik olarak değişen alanları izlemek için kullanılır.Eğer watch kullanılmazsa, role_id alanının değerini dinleyemezsiniz ve bu değere göre belirli işlemler yapamazsınız. watch fonksiyonu, bir formdaki belirli bir alanın değerini izlemek için kullanılır ve bu değeri değişikliklere göre takip eder. */
   const [roles, setRoles] = useState([]);
-
+  const history = useHistory();
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     AxiosInstance.get("/roles")
       .then((response) => {
@@ -32,13 +38,49 @@ export default function SignUp() {
   }, []);
 
   const password = watch("password");
-
-  const onSubmit = (data) => console.log(data);
-
+  /* Kod, bir formun gönderilmesi (submit) işlemini ele alır ve gönderilen verilere göre farklı eylemler gerçekleştirir. */
+  /* onSubmit fonksiyonu, bir formdan gelen verileri işler. Verilere bağlı olarak, kullanıcı rolüne (role) ve diğer form alanlarına göre farklı veri yapısını dataForm değişkenine atar.*/
+  /*. Bu fonksiyonun içinde, formdan alınan veriler bir nesne olan formData'ya atanır. Bu formData nesnesi, kullanıcı tarafından formdaki alanlara girilen verileri içerir.*/
+  /* AxiosInstance.post kullanılarak gönderilen veriler API'ye HTTP POST isteği olarak iletilir. API bu isteği alır ve işler. İşlenecek işlem, genellikle bir veritabanına veri eklemek veya güncellemek*/
+  /* bu kodda apı mesajı alert ile yolllamaktadır*/
+  const onSubmit = async (data) => {
+    const formData = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      role_id: watch("role_id"),
+    };
+    if (watch("role_id") === "2") {
+      formData.store = {
+        name: data.storeName,
+        phone: data.storePhone,
+        tax_no: data.storeTaxNumber,
+        bank_account: data.storeIBAN,
+      };
+    }
+    await AxiosInstance.post("signup", formData)
+      .then((res) => {
+        console.log("Post", res.data.message);
+        //  toast.success(res.data.message);
+        alert(res.data.message);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.error("Post error:", err);
+        // toast.error(err.error);
+        alert(err.response.data.error);
+      });
+    console.log("formData:", formData);
+    reset();
+  };
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center  bg-[#d4d7d9]">
+          <h1 className="text-2xl font-bold mb-2">Hello </h1>
+          <p className="mb-5 text-xs font-thin">
+            Sign up and start shopping now
+          </p>
           <div className="flex flex-col gap-3">
             <div className="flex flex-col">
               <label htmlFor="name">Name</label>
@@ -56,7 +98,7 @@ export default function SignUp() {
                 className="   mt-1 px-3   border rounded-md focus:outline-none focus:ring focus:border-blue-300"
               />
               {errors.name && (
-                <p className="text-red-500 text-[]]font-bold">
+                <p className="text-red-500 text-xs font-bold">
                   {errors.name.message}
                 </p>
               )}
@@ -128,12 +170,7 @@ export default function SignUp() {
             </div>
             <div className="flex flex-col">
               <label htmlFor="role_id">Role</label>
-              <select
-                className="border"
-                id="role_id"
-                {...register("role_id")}
-                defaultValue="Customer"
-              >
+              <select className="border" id="role_id" {...register("role_id")}>
                 {roles.map((role, i) => (
                   <option key={i} value={role.id}>
                     {role.code.charAt(0).toUpperCase() + role.code.slice(1)}
@@ -142,7 +179,6 @@ export default function SignUp() {
               </select>
             </div>
           </div>
-
           {watch("role_id") === "2" && (
             <>
               <div className="flex flex-col">
@@ -232,9 +268,14 @@ export default function SignUp() {
               </div>
             </>
           )}
-
-          <button className="border p-2" type="submit" disabled={!isValid}>
-            Sign Up
+          <button
+            type="submit"
+            disabled={loading || !isValid}
+            className={` mt-5 bg-blue-500 text-white font-bold py-2 px-4 rounded ${
+              !isValid || loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+          >
+            {loading ? "Signing Up" : "Sign Up"}
           </button>
         </div>
       </form>

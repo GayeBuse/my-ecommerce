@@ -7,7 +7,8 @@ import About from "../pages/About.jsx";
 import Team from "../pages/Team.jsx";
 import Product from "../pages/Product.jsx";
 import SignUp from "../pages/SignUp.jsx";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function PageContent() {
   return (
     <div className=" font-['Montserrat']">
@@ -32,6 +33,7 @@ export default function PageContent() {
         </Route>
         <Route exact path="/signup">
           <SignUp />
+          <ToastContainer />
         </Route>
       </Switch>
     </div>

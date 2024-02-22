@@ -70,7 +70,7 @@ export default function Header() {
           <div className="flex items-center sm:hidden  ">
             <IoPersonOutline className="" />
             <nav>
-              <NavLink to="/signup" className="mx-2 font-bold text-xs  ">
+              <NavLink to="/" className="mx-2 font-bold text-xs  ">
                 Login
               </NavLink>
               <span>/</span>
