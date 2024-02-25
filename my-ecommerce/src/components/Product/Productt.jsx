@@ -22,7 +22,7 @@ const Productt = () => {
   return (
     <div className="bg-[#FAFAFA]">
       <nav className=" pl-36 flex items-center gap-2 px- ">
-        <div className=" text-slate-800 text-sm font-bold ">Home</div>
+        <div className=" text-slate-800 text-sm font-bold sm:p-4 ">Home</div>
         <FaChevronRight />
         <div className="text-slate-400 text-sm font-bold ">Shop</div>
       </nav>

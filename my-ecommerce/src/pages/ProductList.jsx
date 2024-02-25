@@ -3,12 +3,28 @@ import { HiViewGrid } from "react-icons/hi";
 import categorydata from "../data/categorydata";
 import { CiViewList } from "react-icons/ci";
 import productlist from "../data/productList";
-
+import { CiShoppingCart } from "react-icons/ci";
+import { CiSearch } from "react-icons/ci";
+import { CiHeart } from "react-icons/ci";
+import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
-
 export default function ProductList() {
   return (
     <div className="font-['Montserrat']">
+      <nav className="hidden sm:flex sm:flex-col sm:items-center text-[#23A6F0]">
+        <NavLink to="/" className="mx-2 text-2xl">
+          Login
+        </NavLink>
+        <span className="mx-2">/</span>
+        <NavLink to="/signup" className="mx-2 text-2xl">
+          Register
+        </NavLink>
+      </nav>
+      <div className=" hidden sm:flex flex-col gap-4 text-3xl justify-center items-center text-[#23A6F0]  ">
+        <CiSearch />
+        <CiShoppingCart />
+        <CiHeart />
+      </div>
       <div>
         <div className="bg-[#FAFAFA] py-12">
           <div className="flex justify-between w-[80%] mx-auto sm:flex-col sm:justify-center sm:items-center sm:gap-8">
@@ -25,7 +41,7 @@ export default function ProductList() {
               <div key={index} className="relative">
                 <img
                   src={item.img}
-                  className="sm:w-[332px] sm:h-[300px] object-cover sm:object-cover"
+                  className="sm:w-[400px] sm:h-[300px] object-cover sm:object-cover"
                 />
                 <div className="absolute top-24 right-20 flex flex-col gap-2 sm:justify-center sm:items-center sm:right-[7rem]">
                   <p className="text-base text-white font-bold">CLOTHES</p>
@@ -58,7 +74,7 @@ export default function ProductList() {
           {productlist.map((product, index) => (
             <div key={index}>
               <Link to={`/shopping/${product.id}`}>
-                <img src={product.img} />
+                <img src={product.img} className="sm:w-[400px]" />
 
                 <div className="flex flex-col items-center py-[30px] gap-[10px]">
                   <h5 className="text-[16px] font-semibold ">
