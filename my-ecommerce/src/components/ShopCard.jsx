@@ -13,7 +13,7 @@ export default function ShopCard() {
             <div className="relative  ">
               <img
                 src="./shopCard/men.png"
-                className="object-cover sm:w-[324px] h-[500px]  "
+                className="object-cover sm:w-[600px] h-[500px]  "
               />
               <a
                 href="#"
@@ -25,7 +25,7 @@ export default function ShopCard() {
             <div className="relative">
               <img
                 src="./shopCard/women.png"
-                className="object-cover  sm:w-[324px] h-[500px]"
+                className="object-cover  sm:w-[600px] h-[500px]"
               />
               <a
                 href="#"
@@ -38,7 +38,7 @@ export default function ShopCard() {
               <div className="relative">
                 <img
                   src="./shopCard/aksesuar.png"
-                  className="object-cover sm:w-[324px]"
+                  className="object-cover sm:w-[600px]"
                 />
                 <a
                   href=""
@@ -50,7 +50,7 @@ export default function ShopCard() {
               <div className="relative">
                 <img
                   src="./shopCard/kıds.png"
-                  className="object-cover sm:w-[324px]"
+                  className="object-cover sm:w-[600px]"
                 />
                 <a
                   href=""

@@ -10,8 +10,8 @@ import { IoPersonOutline } from "react-icons/io5";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
-
 import { NavLink } from "react-router-dom";
+
 export default function Header() {
   const { phone, mail, message } = data.header;
   return (
@@ -43,10 +43,10 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="flex justify-between py-6 px-8 flex-wrap  ">
+      <div className="flex sm:flex-col justify-between py-6 px-8 flex-wrap  ">
         <div className="flex gap-[5rem]">
           <h1 className="font-bold text-2xl ">Bandage</h1>
-          <div className="hidden sm:flex sm:gap-8 sm:mr-10">
+          <div className="hidden sm:flex sm:gap-8 sm:mr-10 ">
             <CiSearch />
             <CiShoppingCart />
             <CiHeart />
@@ -60,11 +60,13 @@ export default function Header() {
             <NavLink to="#">Pages</NavLink>
           </nav>
         </div>
-        <div className="hidden sm:flex sm:flex-col sm:gap-4 pl-[8rem] pt-[2rem] ">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/shopping">Shop</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/team">Team</NavLink>
+        <div>
+          <nav className="hidden sm:flex sm:flex-col sm:gap-4 sm:justify-center sm:items-center sm:pt-[2rem] ">
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/shopping">Shop</NavLink>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/team">Team</NavLink>
+          </nav>
         </div>
         <div className="flex gap-2 items-center text-[#23A6F0] sm:hidden ">
           <div className="flex items-center sm:hidden  ">

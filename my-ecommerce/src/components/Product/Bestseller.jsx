@@ -11,7 +11,7 @@ export default function Bestseller() {
               <img
                 src={product.img}
                 alt={product.title}
-                className="w-[239px] h-[280px] object-cover"
+                className="w-[239px] h-[280px] object-cover sm:w-[400px]  "
               />
               <div className="flex flex-col items-center py-[30px] gap-[10px]">
                 <h2 className="text-[16px] font-semibold">{product.title}</h2>
