@@ -14,12 +14,14 @@ export function userReducer(state = initialState, action) {
         user: action.payload.user,
         isLoggedIn: true,
       };
+    /*  Başarılı oturum açma sonrasında alınan kullanıcı bilgileriyle durumu günceller */
     case "LOGOUT_SUCCESS":
       return {
         ...state,
         user: {},
         isLoggedIn: false,
       };
+    /* Kullanıcı durumunu sıfırlar ve başarılı oturum kapatma durumunda*/
 
     default:
       return state;
