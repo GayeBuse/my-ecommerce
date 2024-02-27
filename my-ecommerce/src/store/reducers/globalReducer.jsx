@@ -1,3 +1,5 @@
+import * as types from "../actions/globalAction/globalActionTypes";
+
 const initialState = {
   rolers: [],
   categories: [],
@@ -7,22 +9,22 @@ const initialState = {
 /* switch` ifadesi, bir kontrol akışı yapısıdır ve farklı durumlara göre farklı kod bloklarını çalıştırmanıza olanak sağlar. `case` ifadeleri, `switch` ifadesi içinde hangi durumun ele alınacağını belirtir. Bu durumlar, genellikle `action`'ın türüne göre belirlenir ve bu durumlara göre Redux'un durumunu güncellemenizi sağlar.*/
 export function globalReducer(state = initialState, action) {
   switch (action.type) {
-    case "SET_ROLES":
+    case types.SET_ROLES:
       return {
         ...state,
         roles: action.payload,
       };
-    case "SET_CATEGORIES":
+    case types.SET_CATEGORIES:
       return {
         ...state,
         categories: action.payload,
       };
-    case "SET_THEME":
+    case types.SET_THEME:
       return {
         ...state,
         theme: action.payload,
       };
-    case "SET_LANGUAGE":
+    case types.SET_LANGUAGE:
       return {
         ...state,
         language: action.payload,
