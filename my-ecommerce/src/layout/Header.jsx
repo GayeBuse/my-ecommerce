@@ -16,7 +16,7 @@ export default function Header() {
   const { phone, mail, message } = data.header;
   return (
     <header className="flex flex-col   font-['Montserrat']  ">
-      <div className="h-[38px] p-5 bg-[#252B42] text-white sm:hidden ">
+      <div className="h-[38px] p-3 bg-[#252B42] text-white sm:hidden ">
         <div className="flex justify-between flex-wrap ">
           <div className="flex gap-2">
             <BsTelephone className="" />
