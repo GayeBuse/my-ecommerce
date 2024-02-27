@@ -1,3 +1,4 @@
+import * as types from "../actions/userAction/userActionTypes";
 const initialState = {
   user: {
     name: null,
@@ -8,14 +9,14 @@ const initialState = {
 };
 export function userReducer(state = initialState, action) {
   switch (action.type) {
-    case "LOGIN_SUCCESS":
+    case types.LOGIN_SUCCESS:
       return {
         ...state,
         user: action.payload.user,
         isLoggedIn: true,
       };
     /*  Başarılı oturum açma sonrasında alınan kullanıcı bilgileriyle durumu günceller */
-    case "LOGOUT_SUCCESS":
+    case types.LOGOUT_SUCCESS:
       return {
         ...state,
         user: {},
