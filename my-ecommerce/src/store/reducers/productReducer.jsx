@@ -1,3 +1,5 @@
+import * as types from "../actions/productAction/productActionTypes";
+
 export const FETCH_STATES = {
   notFetched: "NOT_FETCHED",
   fetching: "FETCHING",
@@ -14,27 +16,27 @@ const initialState = {
 };
 export function productReducer(state = initialState, action) {
   switch (action.type) {
-    case "SET_PRODUCT_LIST":
+    case types.SET_PRODUCT_LIST:
       return {
         ...state,
         productList: action.payload,
         fetchState: FETCH_STATES.fetched,
       };
     /*  Ürün listesini ayarlar ve fetch durumunu FETCH_STATES.fetched olarak günceller.*/
-    case "SET_TOTAL_PRODUCT_COUNT":
+    case types.SET_TOTAL_PRODUCT_COUNT:
       return {
         ...state,
         totalProductCount: action.payload,
       };
     /*  Toplam ürün sayısını ayarlar.*/
-    case "SET_PAGE_COUNT":
+    case types.SET_PAGE_COUNT:
       return {
         ...state,
         pageCount: action.payload,
       };
-    case "SET_ACTIVE_PAGE":
+    case types.SET_ACTIVE_PAGE:
       return { ...state, activePage: action.payload };
-    case "SET_FETCH_STATE":
+    case types.SET_FETCH_STATE:
       return { ...state, fetchState: action.payload };
     default:
       return state;
