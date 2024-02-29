@@ -76,14 +76,19 @@ export default function SignUp() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col items-center  bg-[#d4d7d9]">
+        <div className="max-w-md mx-auto my-8 p-6 bg-white border rounded-lg shadow-md">
           <h1 className="text-2xl font-bold mb-2">Hello </h1>
           <p className="mb-5 text-xs font-thin">
             Sign up and start shopping now
           </p>
           <div className="flex flex-col gap-3">
             <div className="flex flex-col">
-              <label htmlFor="name">Name</label>
+              <label
+                className="block text-gray-700 font-bold mb-2"
+                htmlFor="name"
+              >
+                Name
+              </label>
               <input
                 type="text"
                 placeholder="Enter your name"
@@ -181,7 +186,7 @@ export default function SignUp() {
           </div>
           {watch("role_id") === "2" && (
             <>
-              <div className="flex flex-col">
+              <div className="flex flex-col w-[400px]">
                 <label htmlFor="name">Store Name</label>
                 <input
                   type="text"
@@ -202,7 +207,7 @@ export default function SignUp() {
                   </p>
                 )}
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col  w-[400px]">
                 <label htmlFor="phone">Store Phone </label>
                 <input
                   type="text"
@@ -223,7 +228,7 @@ export default function SignUp() {
                   </p>
                 )}
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col w-[400px]">
                 <label htmlFor="tax_no">Store Tax ID </label>
                 <input
                   type="text"
@@ -244,7 +249,7 @@ export default function SignUp() {
                   </p>
                 )}
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col ">
                 <label htmlFor="bank_account">Store Bank Account </label>
                 <input
                   type="text"
