@@ -1,11 +1,12 @@
 import * as types from "./userActionTypes";
-import { AxiosInstance } from "../../../api/AxiosInstance";
+import AxiosInstance from "../../../api/AxiosInstance";
+import { toast } from "react-toastify";
 
 export const loginSuccess = (user) => {
   return {
     type: types.LOGIN_SUCCESS,
     payload: {
-      user: user,
+      user,
     },
   };
 };
@@ -20,9 +21,9 @@ export const userLogin = (data, history) => {
     AxiosInstance.post("/login", data)
       .then((response) => {
         console.log(response.data);
-
-        dispatch(loginUser(response.data));
+        dispatch(loginSuccess(response.data));
         localStorage.setItem("token", response.data.token);
+        console.log("Login has been successfully");
         toast.success("Hoşgeldiniz");
         history.push("/");
       })
@@ -36,8 +37,9 @@ export const userLogin = (data, history) => {
 
 export const userLogout = () => {
   return (dispatch) => {
-    dispatch(logoutUser());
+    dispatch(logoutSuccess());
     localStorage.removeItem("token");
     console.log("Hesabınızdan çıkış yapılmıştır.");
+    toast.success("Güle Güle");
   };
 };

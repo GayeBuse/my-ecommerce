@@ -4,15 +4,17 @@ const initialState = {
     name: null,
     email: null,
     role_id: "3",
+    token: null,
   },
   isLoggedIn: false,
 };
+console.log(initialState.user);
 export function userReducer(state = initialState, action) {
   switch (action.type) {
     case types.LOGIN_SUCCESS:
       return {
         ...state,
-        user: action.payload.user,
+        user: action.payload,
         isLoggedIn: true,
       };
     /*  Başarılı oturum açma sonrasında alınan kullanıcı bilgileriyle durumu günceller */

@@ -9,6 +9,7 @@ import Product from "../pages/Product.jsx";
 import SignUp from "../pages/SignUp.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoginForm from "../pages/LoginForm.jsx";
 export default function PageContent() {
   return (
     <div className=" font-['Montserrat']">
@@ -33,6 +34,10 @@ export default function PageContent() {
         </Route>
         <Route exact path="/signup">
           <SignUp />
+          <ToastContainer />
+        </Route>
+        <Route exact path="/login">
+          <LoginForm />
           <ToastContainer />
         </Route>
       </Switch>
