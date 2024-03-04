@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { AxiosInstance, renewAxiosInstance } from "../api/AxiosInstance";
+import { AxiosInstance, renewAxiosInstance } from "../api/axiosInstance";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 

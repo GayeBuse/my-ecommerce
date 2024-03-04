@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "../pages/LoginForm.jsx";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { AxiosInstance, renewAxiosInstance } from "/src/api/AxiosInstance.jsx";
+import { AxiosInstance, renewAxiosInstance } from "../api/axiosInstance.jsx";
 
 import {
   loginSuccess,
