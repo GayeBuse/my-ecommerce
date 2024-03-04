@@ -10,7 +10,40 @@ import SignUp from "../pages/SignUp.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "../pages/LoginForm.jsx";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { AxiosInstance, renewAxiosInstance } from "/src/api/AxiosInstance.jsx";
+
+import {
+  loginSuccess,
+  logoutSuccess,
+} from "../store/actions/userAction/userAction.jsx";
 export default function PageContent() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      AxiosInstance.get("/verify")
+        .then((response) => {
+          console.log("autologin ", response);
+          //login oldu
+          // İlk olarak, localStorage'dan bir token alır. Ardından, eğer bir token varsa, bu tokeni kullanarak /verify endpointine bir GET isteği yapar.//
+          const user = response.data;
+          dispatch(loginSuccess(user));
+          renewAxiosInstance();
+          console.log("verified", user);
+        })
+        .catch((error) => {
+          console.error("autologout ", error);
+          dispatch(logoutSuccess());
+          localStorage.removeItem("token");
+          renewAxiosInstance();
+        });
+    }
+  }, [dispatch]); // Redux store'daki kullanıcı durumunu güncellemek için
+  /*Bu kodun amacı, sayfanın yüklendiğinde kullanıcının daha önce giriş yapmış olup olmadığını kontrol etmek ve eğer yapmışsa otomatik olarak oturum açmaktır. Bu, kullanıcı deneyimini artırmak ve kullanıcının her seferinde tekrar giriş yapmasını engellemek için kullanılır.*/
   return (
     <div className=" font-['Montserrat']">
       <Switch>

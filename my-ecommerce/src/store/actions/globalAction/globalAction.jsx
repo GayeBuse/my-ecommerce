@@ -1,6 +1,5 @@
 import * as types from "./globalActionTypes";
-import { AxiosInstance } from "../../../api/AxiosInstance";
-
+import { AxiosInstance, renewAxiosInstance } from "../../../api/AxiosInstance";
 /*  bu iç içe fonksiyonun içindeki dispatch, bir eylemi Redux store'a göndermek için kullanılır*/
 
 export const setRoles = () => {

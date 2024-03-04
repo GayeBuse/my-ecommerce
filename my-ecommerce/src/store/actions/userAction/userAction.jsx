@@ -1,5 +1,5 @@
 import * as types from "./userActionTypes";
-import AxiosInstance from "../../../api/AxiosInstance";
+import { AxiosInstance, renewAxiosInstance } from "../../../api/AxiosInstance";
 import { toast } from "react-toastify";
 
 export const loginSuccess = (user) => {
