@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { data } from "../data/data";
 import { BsTelephone } from "react-icons/bs";
 import { CiMail } from "react-icons/ci";
@@ -14,13 +14,22 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"; // useDispatch hook'unu ekledik
 import Gravatar from "react-gravatar";
 import { userLogout } from "../store/actions/userAction/userAction"; // Logout action'unu içe aktardık
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Header() {
   const { phone, mail, message } = data.header;
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch(); // useDispatch hook'unu ekledik
-  console.log(user);
+  const { search } = useLocation();
+  const categories = useSelector((state) => state.global.categories);
+  const womanCategories = categories.filter((category) =>
+    category.code.includes("k:")
+  );
+  const manCategories = categories.filter((category) =>
+    category.code.includes("e:")
+  );
+  const [showDropdown, setShowDropdown] = useState(false); // Dropdown durumunu saklayacak durum değişkeni
   const handleLogout = () => {
     dispatch(userLogout()); // Logout action'unu dispatch ettik
   };
@@ -64,13 +73,77 @@ export default function Header() {
           </div>
           <nav className="flex gap-5 flex-wrap items-center text-xs font-bold text-[#737373] sm:hidden">
             <NavLink to="/">Home</NavLink>
-            <NavLink to="/shopping">Shop</NavLink>
+
+            <div className="relative ">
+              <div className="flex ">
+                <button className="py-2 px-4 text-gray-700 font-semibold flex items-center">
+                  <NavLink to="/shopping" className="flex items-center">
+                    Shop
+                  </NavLink>
+                </button>
+                <div>
+                  <button
+                    onClick={() => setShowDropdown(!showDropdown)}
+                    className="mt-2"
+                  >
+                    &#9660;
+                  </button>
+                </div>
+              </div>
+              {/* Eğer dropdown gösteriliyorsa kategorileri göster */}
+              {showDropdown && (
+                <div className="absolute right-0 mt-2 py-2 w-48 bg-white border rounded-lg shadow-xl z-10">
+                  <div className="flex flex-col">
+                    {/* Kadın kategorileri */}
+                    <div className="py-2 px-4 text-gray-700 hover:bg-gray-200 cursor-pointer">
+                      <NavLink
+                        to="/shopping/kadin"
+                        className="font-bold  text-base text-[#252B42]  "
+                      >
+                        Women
+                      </NavLink>
+                      <ul>
+                        {womanCategories.map((category) => (
+                          <li key={category.id}>
+                            <NavLink
+                              to={`/shopping/kadin/${search}`}
+                              className="flex items-center"
+                            >
+                              <span>{category.title}</span>
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    {/* Erkek kategorileri */}
+                    <div className="py-2 px-4 text-gray-700 hover:bg-gray-200 cursor-pointer">
+                      <NavLink
+                        to="/shopping/erkek"
+                        className="font-bold text-base text-[#252B42] "
+                      >
+                        Men
+                      </NavLink>
+                      <ul>
+                        {manCategories.map((category) => (
+                          <li key={category.id}>
+                            <NavLink to={`/shopping/erkek/${search}`}>
+                              {category.title}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
             <NavLink to="/about">About</NavLink>
             <NavLink to="/team">Team</NavLink>
             <NavLink to="/contact">Contact</NavLink>
             <NavLink to="#">Pages</NavLink>
           </nav>
         </div>
+
         <div>
           <nav className="hidden sm:flex sm:flex-col sm:gap-4 sm:justify-center sm:items-center sm:pt-[2rem]">
             <NavLink to="/">Home</NavLink>

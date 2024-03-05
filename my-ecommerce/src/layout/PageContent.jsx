@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "../pages/Home.jsx";
 import ProductList from "../pages/ProductList.jsx";
 import Contact from "../pages/Contact.jsx";
@@ -10,7 +10,7 @@ import SignUp from "../pages/SignUp.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "../pages/LoginForm.jsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { AxiosInstance, renewAxiosInstance } from "../api/axiosInstance.jsx";
 
@@ -18,9 +18,10 @@ import {
   loginSuccess,
   logoutSuccess,
 } from "../store/actions/userAction/userAction.jsx";
+import { setCategories } from "../store/actions/globalAction/globalAction.jsx";
 export default function PageContent() {
   const dispatch = useDispatch();
-
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -44,14 +45,17 @@ export default function PageContent() {
     }
   }, [dispatch]); // Redux store'daki kullanıcı durumunu güncellemek için
   /*Bu kodun amacı, sayfanın yüklendiğinde kullanıcının daha önce giriş yapmış olup olmadığını kontrol etmek ve eğer yapmışsa otomatik olarak oturum açmaktır. Bu, kullanıcı deneyimini artırmak ve kullanıcının her seferinde tekrar giriş yapmasını engellemek için kullanılır.*/
+  useEffect(() => {
+    dispatch(setCategories());
+  }, []);
   return (
     <div className=" font-['Montserrat']">
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/shopping">
-          <ProductList />
+        <Route exact path="/shopping/:gender?/:category?">
+          {isLoggedIn ? <ProductList /> : <Redirect to="/login" />}
         </Route>
         <Route exact path="/contact">
           <Contact />

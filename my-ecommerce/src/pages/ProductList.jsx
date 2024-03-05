@@ -8,7 +8,12 @@ import { CiSearch } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 export default function ProductList() {
+  const categories = useSelector((state) => state.global.categories);
+  const mostRating = categories.sort((a, b) => {
+    return b.rating - a.rating;
+  });
   return (
     <div className="font-['Montserrat']">
       <nav className="hidden sm:flex sm:flex-col sm:items-center text-[#23A6F0]">
@@ -35,18 +40,25 @@ export default function ProductList() {
               <h6>Shop</h6>
             </div>
           </div>
-          <div className="flex gap-3  justify-center flex-wrap mt-8  ">
-            {categorydata.map((item, index) => (
-              /*relative sınıf, içindeki absolute pozisyonlandırılmış öğelerin, bu konteynıra göre konumlanmasını sağlar.*/
-              <div key={index} className="relative">
-                <img
-                  src={item.img}
-                  className="sm:w-[400px] sm:h-[300px] object-cover sm:object-cover"
-                />
-                <div className="absolute top-24 right-20 flex flex-col gap-2 sm:justify-center sm:items-center sm:right-[7rem]">
-                  <p className="text-base text-white font-bold">CLOTHES</p>
-                  <p className="text-base text-white font-bold">5 ITEM</p>
-                </div>
+          <div className="flex bg-lightGray justify-between gap-4 pb-12 px-24 sm:flex-col">
+            {mostRating.slice(0, 5).map((category) => (
+              <div key={category.id} className="w-[20%] relative sm:w-[100%]">
+                <NavLink
+                  to={`/shopping/${
+                    category.code.includes("k:")
+                      ? `kadin/${category.code.slice(2)}`
+                      : `erkek/${category.code.slice(2)}`
+                  }`}
+                  key={category.id}
+                >
+                  <img className="h-[100%]" src={category.img} />
+                  <div className="flex flex-col gap-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-lightText">
+                    <h2 className="font-semibold text-xl">{category.title}</h2>
+                    <p className="text-center font-semibold text-lg">
+                      {category.rating}
+                    </p>
+                  </div>
+                </NavLink>
               </div>
             ))}
           </div>
