@@ -1,5 +1,5 @@
 import * as types from "./globalActionTypes";
-import { AxiosInstance, renewAxiosInstance } from "../../../api/AxiosInstance";
+import { AxiosInstance, renewAxiosInstance } from "../../../api/axiosInstance";
 /*  bu iç içe fonksiyonun içindeki dispatch, bir eylemi Redux store'a göndermek için kullanılır*/
 
 export const setRoles = () => {
@@ -14,6 +14,9 @@ export const setRoles = () => {
       });
   };
 };
+{
+  /* thunk ile oluşturulan categories*/
+}
 export const setCategories = () => (dispatch) => {
   return AxiosInstance.get("/categories")
     .then((res) => {
@@ -24,6 +27,9 @@ export const setCategories = () => (dispatch) => {
       console.error("category error", err);
     });
 };
+{
+  /* thunk ile oluşturulan categories*/
+}
 export const setTheme = (theme) => ({ type: types.SET_THEME, payload: theme });
 export const setLanguage = (language) => ({
   type: types.SET_LANGUAGE,
