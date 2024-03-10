@@ -1,6 +1,6 @@
 import * as types from "./productActionTypes";
-import { AxiosInstance } from "../../../api/AxiosInstance";
-
+import { AxiosInstance } from "../../../api/axiosInstance";
+import { FETCH_STATES } from "../../reducers/productReducer";
 // Ürün listesini güncelleyen
 export const setProductList = (productList) => ({
   type: types.SET_PRODUCT_LIST,
@@ -30,42 +30,31 @@ export const setFetchState = (fetchState) => ({
   type: types.SET_FETCH_STATE,
   payload: fetchState,
 });
-
+export const FILTER = (filter) => ({
+  type: types.FILTER,
+  payload: filter,
+});
 // Belirli bir kategoriye ait ürünleri getiren ve Redux mağazasına ekleyen
-export const fetchProductsByCategory = (categoryCode, params = {}) => {
-  return (dispatch, getState) => {
-    AxiosInstance.get(`/products/category/${categoryCode}`, {
-      params: params,
+export const setProductsAction =
+  (category = null, filter = null, sort = null, limit = null, offset = null) =>
+  (dispatch) => {
+    dispatch(setFetchState(FETCH_STATES.Fetching));
+    AxiosInstance.get("/products", {
+      params: {
+        category: category,
+        filter: filter,
+        sort: sort,
+        limit: limit,
+        offset: offset,
+      },
     })
-      .then((response) => {
-        if (params.offset) {
-          // Eğer offset parametresi varsa, mevcut ürün listesini al
-          const currentProductList = getState().product.productList;
-          // Yeni ürün listesini al
-          const newProductList = response.data.products;
-          // Mevcut ürün listesi ile yeni ürün listesini birleştir
-          const updatedProductList = [...currentProductList, ...newProductList];
-          // Yeni ürün listesini güncelle
-          dispatch(setProductList(updatedProductList));
-        } else {
-          // Eğer offset parametresi yoksa, ürün listesini sıfırla
-          dispatch(setProductList(response.data.products));
-          // Toplam ürün sayısını ayarla
-          dispatch(setTotalProductCount(response.data.total));
-          // Sayfa sayısını ayarla
-          dispatch(setPageCount(response.data.pages));
-          // Veri alım durumunu başarılı olarak işaretle
-          dispatch(setFetchState("success"));
-        }
+      .then((res) => {
+        dispatch(setProductList(res.data.products));
+        dispatch(setPageCount(Math.ceil(res.data.total / 25)));
+        dispatch(setTotalProductCount(res.data.products.length));
+        dispatch(setFetchState(FETCH_STATES.Fetched));
       })
       .catch((err) => {
-        // Hata durumunda konsola hata mesajını yazdır
-        console.error(
-          `Error fetching products for category ${categoryCode}:`,
-          err
-        );
-        // Veri alım durumunu hata olarak işaretle
-        dispatch(setFetchState("error"));
+        console.log(err);
       });
   };
-};

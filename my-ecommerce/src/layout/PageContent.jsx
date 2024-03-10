@@ -55,7 +55,7 @@ export default function PageContent() {
           <Home />
         </Route>
         <Route exact path="/shopping/:gender?/:category?">
-          {isLoggedIn ? <ProductList /> : <Redirect to="/login" />}
+          <ProductList />
         </Route>
         <Route exact path="/contact">
           <Contact />
@@ -66,7 +66,7 @@ export default function PageContent() {
         <Route exact path="/team">
           <Team />
         </Route>
-        <Route exact path="/shopping/:productId">
+        <Route exact path="/shopping1">
           <Product />
         </Route>
         <Route exact path="/signup">

@@ -1,6 +1,5 @@
 import { FaAngleRight } from "react-icons/fa6";
 import { HiViewGrid } from "react-icons/hi";
-import categorydata from "../data/categorydata";
 import { CiViewList } from "react-icons/ci";
 import productlist from "../data/productList";
 import { CiShoppingCart } from "react-icons/ci";
@@ -8,9 +7,43 @@ import { CiSearch } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { setProductsAction } from "../store/actions/productAction/productAction";
 export default function ProductList() {
+  const dispatch = useDispatch();
   const categories = useSelector((state) => state.global.categories);
+  const products = useSelector((store) => store.product.productList);
+  const [filters, setFilters] = useState({
+    category: "",
+    filterText: "",
+    sortBy: "",
+  });
+  const handleCategoryChange = (event) => {
+    setFilters({
+      ...filters,
+      category: event.target.value,
+    });
+  };
+  const handleFilterTextChange = (event) => {
+    setFilters({
+      ...filters,
+      filter: event.target.value,
+    });
+  };
+  const handleSortByChange = (event) => {
+    setFilters({
+      ...filters,
+      sortBy: event.target.value,
+    });
+  };
+  const handleFilterClick = () => {
+    dispatch(fetchProducts(fil));
+  };
+  useEffect(() => {
+    dispatch(setProductsAction());
+  }, []);
+
   const mostRating = categories.sort((a, b) => {
     return b.rating - a.rating;
   });
@@ -72,11 +105,24 @@ export default function ProductList() {
             <HiViewGrid className="text-2xl" />
             <CiViewList className="text-2xl" />
           </div>
+
           <div className="flex gap-2  ">
-            <select className=" bg-[#F9F9F9] border-solid border-2  ">
-              <option value="">Popularity</option>
-            </select>
-            <button className="bg-[#23A6F0] text-white  px-4 py-2 font-normal ">
+            <input
+              type="text"
+              placeholder="Search"
+              className="border rounded-lg p-2
+              "
+            ></input>
+            <form>
+              <label htmlFor="sort"></label>
+              <select name="sort" id="sort" className="border  rounded-lg p-2">
+                <option value="price:asc">Price lowest</option>
+                <option value="price:desc">Price highest</option>
+                <option value="rating:asc">Rating lowest </option>
+                <option value="rating:desc">Rating highest </option>
+              </select>
+            </form>
+            <button className="bg-[#23A6F0] text-white  border  rounded-lg p-2 font-normal ">
               FILTER
             </button>
           </div>
