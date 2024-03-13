@@ -1,14 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
-
 import { setProductsAction } from "../store/actions/productAction/productAction";
 import { useEffect } from "react";
+
 export default function Bestseller() {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.productList);
+  const products = useSelector((store) => store.product.productList);
   const mostRating = products.sort((a, b) => {
     return b.rating - a.rating;
   });
-  const bestProducts = mostRating.slice(0, 8);
+  const bestProducts = mostRating.slice(0, 9);
+  useEffect(() => {
+    dispatch(setProductsAction());
+  }, [dispatch]);
 
   return (
     <>
@@ -16,7 +19,10 @@ export default function Bestseller() {
         <h1 className=" flex  text-2xl font-bold m-3 ">BESTSELLER PRODUCTS</h1>
         <div className="flex gap-[50px] flex-wrap items-center justify-center pb-[80px]">
           {bestProducts.map((product, index) => (
-            <div className="product-card" key={index}>
+            <div
+              className="border-2 border-gray-300 hover:border-blue-500 flex flex-col items-center gap-3 w-[25rem] shadow-xl p-5"
+              key={index}
+            >
               <img
                 src={product.images[0].url}
                 alt=""

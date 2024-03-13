@@ -30,10 +30,7 @@ export const setFetchState = (fetchState) => ({
   type: types.SET_FETCH_STATE,
   payload: fetchState,
 });
-export const FILTER = (filter) => ({
-  type: types.FILTER,
-  payload: filter,
-});
+
 // Belirli bir kategoriye ait ürünleri getiren ve Redux mağazasına ekleyen
 export const setProductsAction =
   (category = null, filter = null, sort = null, limit = null, offset = null) =>
