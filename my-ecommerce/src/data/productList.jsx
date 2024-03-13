@@ -11,7 +11,7 @@ import img10 from "../../public/productList/img10.png";
 import img11 from "../../public/productList/img11.png";
 import img12 from "../../public/productList/img12.png";
 
-const productList = [
+const colorr = [
   {
     id: "ürün-1",
     img: img1,
@@ -156,4 +156,4 @@ const productList = [
   },
 ];
 
-export default productList;
+export default colorr;

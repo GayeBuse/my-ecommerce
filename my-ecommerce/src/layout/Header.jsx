@@ -92,47 +92,50 @@ export default function Header() {
               </div>
               {/* Eğer dropdown gösteriliyorsa kategorileri göster */}
               {showDropdown && (
-                <div className="absolute right-0 mt-2 py-2 w-48 bg-white border rounded-lg shadow-xl z-10">
-                  <div className="flex flex-col">
-                    {/* Kadın kategorileri */}
-                    <div className="py-2 px-4 text-gray-700 hover:bg-gray-200 cursor-pointer">
+                <div className=" flex absolute right-0 mt-2 py-2 w-48 bg-white border rounded-lg shadow-xl z-10">
+                  <div className="flex flex-col ">
+                    <p className="font-bold text-black  p-2">Woman</p>
+                    {womanCategories.map((category) => (
                       <NavLink
-                        to="/shopping/kadin"
-                        className="font-bold  text-base text-[#252B42]  "
+                        to={`/shopping/${
+                          category.code.includes("k:")
+                            ? `kadin/${category.code.slice(
+                                2,
+                                category.code.length
+                              )}`
+                            : `erkek/${category.code.slice(
+                                2,
+                                category.code.length
+                              )}`
+                        }`}
+                        className="text-gray-700 block px-4 py-2 hover:bg-gray-200 cursor-pointer "
+                        key={category.id}
                       >
-                        Women
+                        {category.title}
                       </NavLink>
-                      <ul>
-                        {womanCategories.map((category) => (
-                          <li key={category.id}>
-                            <NavLink
-                              to={`/shopping/kadin/${search}`}
-                              className="flex items-center"
-                            >
-                              <span>{category.title}</span>
-                            </NavLink>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    {/* Erkek kategorileri */}
-                    <div className="py-2 px-4 text-gray-700 hover:bg-gray-200 cursor-pointer">
+                    ))}
+                  </div>
+                  <div className="py-1" role="none">
+                    <p className="font-bold text-black  p-2">Men</p>
+                    {manCategories.map((category) => (
                       <NavLink
-                        to="/shopping/erkek"
-                        className="font-bold text-base text-[#252B42] "
+                        to={`/shopping/${
+                          category.code.includes("e:")
+                            ? `erkek/${category.code.slice(
+                                2,
+                                category.code.length
+                              )}`
+                            : `kadin/${category.code.slice(
+                                2,
+                                category.code.length
+                              )}`
+                        }`}
+                        className="text-gray-700 hover:bg-gray-200 cursor-pointer block px-4 py-2 "
+                        key={category.id}
                       >
-                        Men
+                        {category.title}
                       </NavLink>
-                      <ul>
-                        {manCategories.map((category) => (
-                          <li key={category.id}>
-                            <NavLink to={`/shopping/erkek/${search}`}>
-                              {category.title}
-                            </NavLink>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    ))}
                   </div>
                 </div>
               )}
