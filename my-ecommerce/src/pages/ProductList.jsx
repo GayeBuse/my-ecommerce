@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { setProductsAction } from "../store/actions/productAction/productAction";
-import { FETCH_STATES } from "../store/reducers/productReducer";
 import { useLocation } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { useParams } from "react-router-dom";
@@ -33,15 +32,7 @@ export default function ProductList() {
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [categoryID, setCategoryID] = useState();
-  const productFetching = useSelector(
-    (store) => store.product.fetchState == FETCH_STATES.Fetching
-  );
-  const productFetched = useSelector(
-    (store) => store.product.fetchState == FETCH_STATES.Fetched
-  );
-  const productsCount = useSelector(
-    (state) => state.product.setTotalProductCount
-  );
+
   const endOffset = offset + limit;
   const currentItems = products?.slice(offset, endOffset);
 
