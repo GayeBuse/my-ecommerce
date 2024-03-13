@@ -66,7 +66,7 @@ export default function PageContent() {
         <Route exact path="/team">
           <Team />
         </Route>
-        <Route exact path="/shopping1">
+        <Route exact path="/product/:productId/:productNameSlug">
           <Product />
         </Route>
         <Route exact path="/signup">

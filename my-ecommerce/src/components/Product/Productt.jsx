@@ -1,76 +1,95 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import productList from "../../data/productList";
-import { FaChevronRight } from "react-icons/fa6";
-import { MdStarRate } from "react-icons/md";
-import { MdStarOutline } from "react-icons/md";
-import { CiHeart } from "react-icons/ci";
-import { CiShoppingCart } from "react-icons/ci";
+import { Carousel } from "@material-tailwind/react";
+import { FaChevronRight } from "react-icons/fa";
+import { MdStarRate, MdStarOutline } from "react-icons/md";
+import { CiHeart, CiShoppingCart } from "react-icons/ci";
 import { IoMdEye } from "react-icons/io";
+import { AxiosInstance } from "../../api/axiosInstance";
+
 const Productt = () => {
   const { productId } = useParams(); // Tıklanan ürünün ID'sini al
+  const [product, setProduct] = useState(null); // Initial state null olarak tanımla
 
-  // ID'ye göre ürünü bul
-  const Product = productList.find((product) => product.id === productId);
+  useEffect(() => {
+    AxiosInstance.get(`/products/${productId}`).then((res) => {
+      setProduct(res.data);
+    });
+  }, [productId]);
 
-  // Eğer ürün bulunamazsa
-  if (!Product) {
-    return <div>Ürün bulunamadı.</div>;
+  // Ürün yüklenene kadar Loading... mesajı göster
+  if (!product) {
+    return <div>Loading...</div>;
   }
 
-  // Ürünü ekrana yazdır
   return (
-    <div className="bg-[#FAFAFA]">
-      <nav className=" pl-36 flex items-center gap-2 px- ">
-        <div className=" text-slate-800 text-sm font-bold sm:p-4 ">Home</div>
+    <div className="  bg-[#FAFAFA]">
+      <nav className="pl-20 flex items-center gap-2 pb-5 ">
+        <div className="text-slate-800 text-sm font-bold sm:p-4 ">Home</div>
         <FaChevronRight />
         <div className="text-slate-400 text-sm font-bold ">Shop</div>
       </nav>
-      <div className="flex  w-[80%] mx-auto flex-wrap ">
-        <div className="flex  justify-between">
-          <img
-            className="w-[506px] h-[450px] object-cover "
-            src={Product.img}
-          />
-        </div>
-        <div className="mx-auto my-auto basis-2/5 flex flex-col gap-5">
-          <div className="">
-            <h1 className="text-xl font-normal">Floating Phone</h1>
+      <div className="flex">
+        <div className="flex pl-20 justify-between sm:flex-col sm:items-center sm:justify-center ">
+          {product.images.map((img, index) => (
+            <div
+              key={index}
+              className="w-[40rem] flex flex-col gap-8 sm:m-auto"
+            >
+              <Carousel
+                key={index}
+                className="w-[30rem] h-[40rem] sm:w-[30rem] sm:h-[30rem]"
+              >
+                <img className="w-full h-full" src={img.url} />
+                <img className="w-full h-full" src={img.url} />
+              </Carousel>
 
-            <div className="text-[#F3CD03] flex gap-1 text-2xl">
-              <MdStarRate />
-              <MdStarRate />
-              <MdStarRate />
-              <MdStarRate />
-              <MdStarOutline />
-              <div>
-                <p className="text-[#737373] text-sm">10 Reviews</p>
+              <div className="flex gap-6 pb-10 w-28 h-32">
+                <img src={img.url} />
+                <img src={img.url} />
               </div>
             </div>
-            <p>{Product.title}</p>
-            <p> {Product.category}</p>
-            <div className="flex gap-[5px] py-[5px] px-[3px] text-[16px] font-bold">
-              <p className="text-[#BDBDBD]"> {Product.price}</p>
-              <p className="text-[#23856D]">{Product.sale}</p>
-            </div>
+          ))}
+        </div>
 
-            <p className=" mb-4 text-sm text-[#858585]">{Product.details}</p>
-            <p className="border-b-2 border-[#BDBDBD] mb-4 "></p>
-            <ul>
-              {Product.colors.map((color, index) => (
-                <li
-                  key={index}
-                  className="inline-block w-5 h-5 rounded-2xl mr-1"
-                  style={{ backgroundColor: color }}
-                ></li>
-              ))}
-            </ul>
+        <div className=" w-[48%] flex-col flex gap-6">
+          <h2 className="text-lg  pt-4 font-semibold ">{product.name}</h2>
+          <div className="text-[#F3CD03] flex gap-1 text-2xl">
+            <MdStarRate />
+            <MdStarRate />
+            <MdStarRate />
+            <MdStarRate />
+            <MdStarOutline />
+            <div>
+              <p className="text-[#737373] text-sm">10 Reviews</p>
+            </div>
           </div>
+          <p className="text-secondText font-bold">
+            {product.sell_count} Reviews
+          </p>
+          <p className="text-textColor text-2xl font-bold ">${product.price}</p>
+          <div className="flex items-center">
+            <p className="text-secondText text-lg font-semibold">
+              Availability &nbsp;&nbsp;&nbsp;:
+            </p>
+            <p className="capitalize text-[] text-lg font-semibold">
+              &nbsp; In Stock
+            </p>
+          </div>
+          <p className="text-zinc">{product.description}</p>
+          <div className="w-[90%] h-[2px] bg-mutedColor"></div>
+          <div className="flex gap-3">
+            <button className="h-5 w-5 bg-[#23A6F0] rounded-full"></button>
+            <button className="h-5 w-5 bg-[#23856D] rounded-full"></button>
+            <button className="h-5 w-5 bg-[#E77C40] rounded-full"></button>
+            <button className="h-5 w-5 bg-[#252B42] rounded-full"></button>
+          </div>
+
           <div className="flex items-center justify-between w-[300px]">
-            <button className="bg-[#23A6F0] text-white  px-4 py-2 font-normal rounded">
+            <button className="bg-[#23A6F0] text-white px-4 py-2 font-normal rounded">
               Select Options
             </button>
-            <CiHeart className="w-8 h-8 rounded-full border-2 border-[#E8E8E8] bg-white  " />
+            <CiHeart className="w-8 h-8 rounded-full border-2 border-[#E8E8E8] bg-white" />
             <CiShoppingCart className="w-8 h-8 rounded-full border-2 border-[#E8E8E8] bg-white" />
             <IoMdEye className="w-8 h-8 rounded-full border-2 border-[#E8E8E8] bg-white" />
           </div>
