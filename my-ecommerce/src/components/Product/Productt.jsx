@@ -6,11 +6,13 @@ import { MdStarRate, MdStarOutline } from "react-icons/md";
 import { CiHeart, CiShoppingCart } from "react-icons/ci";
 import { IoMdEye } from "react-icons/io";
 import { AxiosInstance } from "../../api/axiosInstance";
-
+import { addToCart } from "../../store/actions/shoppingCartAction/shoppingCartAction";
+import { useDispatch, useSelector } from "react-redux";
 const Productt = () => {
   const { productId } = useParams(); // Tıklanan ürünün ID'sini al
   const [product, setProduct] = useState(null); // Initial state null olarak tanımla
-
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.shoppingCart.cartList);
   useEffect(() => {
     AxiosInstance.get(`/products/${productId}`).then((res) => {
       setProduct(res.data);
@@ -21,6 +23,9 @@ const Productt = () => {
   if (!product) {
     return <div>Loading...</div>;
   }
+  const addtoShoppingCart = () => {
+    dispatch(addToCart(product, 1)); // addToCart eylemini doğru şekilde çağır
+  };
 
   return (
     <div className="  bg-[#FAFAFA]">
@@ -90,7 +95,10 @@ const Productt = () => {
               Select Options
             </button>
             <CiHeart className="w-8 h-8 rounded-full border-2 border-[#E8E8E8] bg-white" />
-            <CiShoppingCart className="w-8 h-8 rounded-full border-2 border-[#E8E8E8] bg-white" />
+            <CiShoppingCart
+              onClick={addtoShoppingCart}
+              className="w-8 h-8 rounded-full border-2 border-[#E8E8E8] bg-white"
+            />
             <IoMdEye className="w-8 h-8 rounded-full border-2 border-[#E8E8E8] bg-white" />
           </div>
         </div>
