@@ -9,10 +9,24 @@ const initialState = {
 export function shoppingCartReducer(state = initialState, action) {
   switch (action.type) {
     case types.ADD_TO_CART:
-      return {
-        ...state,
-        cart: [...state.cart, action.payload],
-      };
+      const existingItemIndex = state.cart.findIndex(
+        (item) => cart.id === action.payload.id
+      );
+      if (existingItemIndex !== -1) {
+        // If the product already exists in the cart, update its quantity
+        const updatedItems = [...state.cart];
+        updatedItems[existingItemIndex].quantity += 1;
+        return {
+          ...state,
+          cart: updatedItems,
+        };
+      } else {
+        // If the product doesn't exist in the cart, add it
+        return {
+          ...state,
+          cart: [...state.cart, action.payload],
+        };
+      }
     case types.REMOVE_FROM_CART:
       return {
         ...state,
