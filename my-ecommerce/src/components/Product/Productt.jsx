@@ -91,14 +91,14 @@ const Productt = () => {
           </div>
 
           <div className="flex items-center justify-between w-[300px]">
-            <button className="bg-[#23A6F0] text-white px-4 py-2 font-normal rounded">
-              Select Options
+            <button
+              onClick={addtoShoppingCart}
+              className="bg-[#23A6F0] text-white px-4 py-2 font-normal rounded"
+            >
+              Sepete Ekle
             </button>
             <CiHeart className="w-8 h-8 rounded-full border-2 border-[#E8E8E8] bg-white" />
-            <CiShoppingCart
-              onClick={addtoShoppingCart}
-              className="w-8 h-8 rounded-full border-2 border-[#E8E8E8] bg-white"
-            />
+            <CiShoppingCart className="w-8 h-8 rounded-full border-2 border-[#E8E8E8] bg-white" />
             <IoMdEye className="w-8 h-8 rounded-full border-2 border-[#E8E8E8] bg-white" />
           </div>
         </div>

@@ -18,7 +18,7 @@ import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 
 export default function Header() {
-  const cart = useSelector((store) => store.shoppingCart.cartList) || [];
+  const cart = useSelector((store) => store.shoppingCart.cartList);
   const { phone, mail, message } = data.header;
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const user = useSelector((state) => state.user.user);
@@ -149,7 +149,6 @@ export default function Header() {
             <NavLink to="#">Pages</NavLink>
           </nav>
         </div>
-
         <div>
           <nav className="hidden sm:flex sm:flex-col sm:gap-4 sm:justify-center sm:items-center sm:pt-[2rem]">
             <NavLink to="/">Home</NavLink>
@@ -188,58 +187,58 @@ export default function Header() {
           <div className="flex gap-4 text-lg">
             <CiSearch />
             <div className="flex items-center gap-2">
-              <Dropdown
-                toggle={() => setDropDown(!dropDown)}
-                isOpen={!dropDown}
-                direction="left"
-              >
+              <Dropdown toggle={() => setDropDown(!dropDown)}>
                 <DropdownToggle data-toggle="dropdown" tag="span">
                   <div className="flex gap-1 items-center">
                     <CiShoppingCart />
                     <span className="font-thin bg-blue-300 rounded-full px-2 text-white">
-                      {cart && cart.length}
+                      {cart.length}
                     </span>
                   </div>
                 </DropdownToggle>
-                <DropdownMenu className="w-96 h-96 overflow-y-auto">
-                  <div className="flex flex-col gap-3 px-4 py-2 ">
-                    <div className="flex items-center font-extrabold gap-1">
-                      <h1>Sepetim</h1>
-                      <span>({cart.length} Ürün)</span>
-                    </div>
-                    {cart.map((item) => {
-                      return (
-                        <div className="flex gap-6 items-center border-b-2 py-2">
-                          <img
-                            className="w-24 h-32 border-3 rounded-lg"
-                            src={item.images[0].url}
-                            alt=""
-                          />
-                          <div className="flex flex-col gap-3">
-                            <h1>{item.name}</h1>
-                            <div className="flex gap-2 text-gray-500 text-sm">
-                              <span>Beden:38</span>
-                              <span>Adet:{item.count}</span>
+                {dropDown && (
+                  <DropdownMenu className=" flex  absolute  bg-white border rounded-lg shadow-xl z-10 right-0">
+                    <div className="flex flex-col gap-3 px-4 py-2  ">
+                      <div className="flex items-center font-extrabold gap-1">
+                        <h1>Sepetim</h1>
+                        <span>({cart.length} Ürün)</span>
+                      </div>
+                      {cart.map((item) => {
+                        const totalPrice = item.price * item.count;
+                        return (
+                          <div className="flex gap-6 items-center border-b-2 py-2">
+                            <img
+                              className="w-24 h-32 border-3 rounded-lg"
+                              src={item.images[0].url}
+                              alt=""
+                            />
+                            <div className="flex flex-col gap-3">
+                              <h1>{item.name}</h1>
+                              <div className="flex gap-2 text-gray-500 text-sm">
+                                <span>Beden:38</span>
+                                <span>Adet:{item.count}</span>
+                              </div>
+                              <span className="text-blue-300">
+                                {totalPrice} $
+                              </span>
                             </div>
-                            <span className="text-orange-700">
-                              {item.price} $
-                            </span>
                           </div>
-                        </div>
-                      );
-                    })}
-                    <div className="flex gap-3 ">
-                      <button className="border-1 py-2 px-7 rounded-md bg-gray-100 hover:bg-gray-700">
-                        Sepete Git
-                      </button>
-                      <button className="border-1 py-2 px-3 rounded-md bg-orange-500 text-white hover:bg-orange-900">
-                        Siparişi Tamamla
-                      </button>
+                        );
+                      })}
+                      <div className="flex gap-3 ">
+                        <button className="border-1 py-2 px-7 rounded-md bg-gray-100 hover:bg-gray-700">
+                          Sepete Git
+                        </button>
+                        <button className="border-1 py-2 px-3 rounded-md bg-blue-300 text-white hover:bg-orange-900">
+                          Siparişi Tamamla
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </DropdownMenu>
+                  </DropdownMenu>
+                )}
               </Dropdown>
             </div>
+
             <CiHeart />
           </div>
           {isLoggedIn && <Gravatar email={mail} className="rounded-full w-8" />}

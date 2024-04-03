@@ -242,6 +242,7 @@ export default function ProductList() {
                 size="lg"
                 className="  mt-5 bg-blue-500 text-white font-bold py-2 px-4 rounded"
                 type="submit"
+                onClick={handleFilter}
               >
                 Filter
               </button>
