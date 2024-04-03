@@ -1,8 +1,9 @@
 import * as types from "./shoppingCartActionTypes";
 
-export const addToCart = (product, count) => ({
-  type: types.ADD_TO_CART,
-  payload: { product, count },
+export const addToCart = (cartList, operation) => ({
+  type:
+    operation === "decrement" ? types.DECREMENT_CART_ITEM : types.ADD_TO_CART,
+  payload: cartList,
 });
 
 export const removeFromCart = (productId) => ({

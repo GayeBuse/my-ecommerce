@@ -1,32 +1,44 @@
 import * as types from "../actions/shoppingCartAction/shoppingCartActionTypes";
-
+const storedCartList = JSON.parse(localStorage.getItem("cartList")) || [];
 const initialState = {
   cart: [],
   payment: {},
   adreess: {},
+  cartList: storedCartList,
 };
 
 export function shoppingCartReducer(state = initialState, action) {
   switch (action.type) {
     case types.ADD_TO_CART:
-      const existingItemIndex = state.cart.findIndex(
-        (item) => cart.id === action.payload.id
+      const existingProductIndex = state.cartList.findIndex(
+        (item) => item.id === action.payload.id
       );
-      if (existingItemIndex !== -1) {
-        // If the product already exists in the cart, update its quantity
-        const updatedItems = [...state.cart];
-        updatedItems[existingItemIndex].quantity += 1;
-        return {
-          ...state,
-          cart: updatedItems,
-        };
+
+      if (existingProductIndex !== -1) {
+        const updatedCartList = [...state.cartList];
+        updatedCartList[existingProductIndex].count += 1;
+        updatedCartList[existingProductIndex].checked = true;
+
+        return { ...state, cartList: updatedCartList };
       } else {
-        // If the product doesn't exist in the cart, add it
-        return {
-          ...state,
-          cart: [...state.cart, action.payload],
-        };
+        const updatedCartList = [
+          ...state.cartList,
+          { count: 1, checked: true, ...action.payload },
+        ];
+
+        return { ...state, cartList: updatedCartList };
       }
+    case types.DECREMENT_CART_ITEM:
+      const updatedCart = state.cartList
+        .map((item) => {
+          if (item.id === action.payload.id) {
+            return { ...item, count: Math.max(0, item.count - 1) };
+          }
+          return item;
+        })
+        .filter((item) => item.count > 0);
+
+      return { ...state, cartList: updatedCart };
     case types.REMOVE_FROM_CART:
       return {
         ...state,
