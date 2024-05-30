@@ -5,8 +5,8 @@ export const addToCart = (cartList, operation) => ({
     operation === "decrement" ? types.DECREMENT_CART_ITEM : types.ADD_TO_CART,
   payload: cartList,
 });
-export const removeFromCart = (productId) => {
-  return { type: types.REMOVE_FROM_CART, payload: productId };
+export const removeFromCart = (product) => {
+  return { type: types.REMOVE_FROM_CART, payload: product };
 };
 
 export const clearCart = () => ({
