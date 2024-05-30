@@ -13,7 +13,7 @@ import LoginForm from "../pages/LoginForm.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { AxiosInstance, renewAxiosInstance } from "../api/axiosInstance.jsx";
-
+import ShopProductCard from "../components/ShopProductCard.jsx";
 import {
   loginSuccess,
   logoutSuccess,
@@ -65,6 +65,9 @@ export default function PageContent() {
         </Route>
         <Route exact path="/team">
           <Team />
+        </Route>
+        <Route exact path="/my-cart">
+          <ShopProductCard />
         </Route>
         <Route exact path="/product/:productId/:productNameSlug">
           <Product />
