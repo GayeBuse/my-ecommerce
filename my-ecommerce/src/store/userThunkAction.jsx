@@ -1,7 +1,7 @@
-/*import { AxiosInstance } from "./AxiosInstance";
+import { AxiosInstance } from "../api/axiosInstance";
 import { toast } from "react-toastify";
 import { login, signup } from "../store/actions/userAction";
-import { FETCH_STATES } from "../store/reducers/productReducer";
+import { FETCH_STATES } from "./reducers/productReducer";
 import { setUser, userLogin } from "../store/actions/userAction";
 
 export const postSignup = (data) => {
@@ -55,4 +55,3 @@ export const verifyToken = (data) => {
       });
   };
 };
-*/

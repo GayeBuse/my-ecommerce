@@ -1,5 +1,6 @@
 import * as types from "./productActionTypes";
-import { AxiosInstance } from "../../../api/AxiosInstance";
+import { AxiosInstance } from "../../../api/axiosInstance";
+import { FETCH_STATES } from "../../reducers/productReducer";
 
 // Ürün listesini güncelleyen
 export const setProductList = (productList) => ({
