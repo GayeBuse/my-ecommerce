@@ -10,7 +10,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"; // useDispatch hook'unu ekledik
 import Gravatar from "react-gravatar";
 import { userLogout } from "../store/actions/userAction/userAction"; // Logout action'unu içe aktardık
@@ -24,6 +24,7 @@ export default function Header() {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch(); // useDispatch hook'unu ekledik
   const { search } = useLocation();
+  const history = useHistory(); // useHistory hook'unu ekledik
   const categories = useSelector((state) => state.global.categories);
   const womanCategories = categories.filter((category) =>
     category.code.includes("k:")
@@ -226,7 +227,10 @@ export default function Header() {
                         );
                       })}
                       <div className="flex gap-3 ">
-                        <button className="border-1 py-2 px-7 rounded-md bg-gray-100 hover:bg-gray-700">
+                        <button
+                          onClick={() => history.push("/my-cart")}
+                          className="border-1 py-2 px-7 rounded-md bg-gray-100 hover:bg-gray-700"
+                        >
                           Sepete Git
                         </button>
                         <button className="border-1 py-2 px-3 rounded-md bg-blue-300 text-white hover:bg-orange-900">
