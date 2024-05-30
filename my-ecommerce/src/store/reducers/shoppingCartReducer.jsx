@@ -40,11 +40,13 @@ export function shoppingCartReducer(state = initialState, action) {
 
       return { ...state, cartList: updatedCart };
     case types.REMOVE_FROM_CART:
+      const newCartList = state.cartList.filter(
+        (item) => item.id !== action.payload
+      );
       return {
         ...state,
-        cart: state.cart.filter((item) => item.product.id !== action.payload),
+        cartList: newCartList,
       };
-
     case types.CLEAR_CART:
       return {
         ...state,
