@@ -233,7 +233,7 @@ export default function Header() {
                         >
                           Sepete Git
                         </button>
-                        <button className="border-1 py-2 px-3 rounded-md bg-blue-300 text-white hover:bg-orange-900">
+                        <button className="border-1 py-2 px-3 rounded-md bg-blue-300 text-white hover:bg-gray-700">
                           Siparişi Tamamla
                         </button>
                       </div>
