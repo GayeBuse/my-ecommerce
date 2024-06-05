@@ -69,7 +69,7 @@ export default function ShopProductCard() {
                   <div className="flex items-center">
                     <button
                       onClick={() => productMinus(item)}
-                      className="px-3 py-3 border-1 bg-gray-200"
+                      className="px-3 py-3 border-1 bg-gray-200 "
                     >
                       -
                     </button>
