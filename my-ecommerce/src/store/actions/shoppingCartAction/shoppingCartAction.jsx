@@ -8,7 +8,16 @@ export const addToCart = (cartList, operation) => ({
 export const removeFromCart = (product) => {
   return { type: types.REMOVE_FROM_CART, payload: product };
 };
+export const toggleCheckItemAction = (item) => {
+  return {
+    type: types.TOGGLE_CHECK_ITEM,
+    payload: item,
+  };
+};
 
+export const removeProductAction = (product) => {
+  return { type: REMOVE_CART_ITEM, payload: product };
+};
 export const clearCart = () => ({
   type: types.CLEAR_CART,
 });
