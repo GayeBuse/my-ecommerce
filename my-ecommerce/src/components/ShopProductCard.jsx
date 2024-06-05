@@ -84,7 +84,7 @@ export default function ShopProductCard() {
                     </button>
                   </div>
                   <button onClick={() => removeProduct(item)}>Ürünü Sil</button>
-                  <h1 className="text-xl text-blue-300">
+                  <h1 className="text-xl text-blue-300 ">
                     {item.price * item.count}$
                   </h1>
                 </div>
