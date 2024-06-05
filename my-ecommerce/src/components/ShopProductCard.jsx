@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   addToCart,
   removeFromCart,
+  toggleCheckItemAction,
 } from "../store/actions/shoppingCartAction/shoppingCartAction";
 
 export default function ShopProductCard() {
@@ -19,6 +20,9 @@ export default function ShopProductCard() {
   function removeProduct(item) {
     dispatch(removeFromCart(item.id));
   }
+  function toggleCheckbox(item) {
+    dispatch(toggleCheckItemAction(item));
+  }
 
   return (
     <div className="py-20 flex flex-col">
@@ -34,6 +38,7 @@ export default function ShopProductCard() {
                   className="w-5 h-5 border-gray-800 rounded"
                   type="checkbox"
                   checked={item.checked}
+                  onClick={() => toggleCheckbox(item)}
                 />
                 <img
                   className="w-[9rem] h-[12rem] border-2 rounded-lg"

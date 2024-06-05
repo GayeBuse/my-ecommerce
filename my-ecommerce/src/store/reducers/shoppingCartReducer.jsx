@@ -47,6 +47,16 @@ export function shoppingCartReducer(state = initialState, action) {
         ...state,
         cartList: newCartList,
       };
+    //checbox için
+    case types.TOGGLE_CHECK_ITEM:
+      const toggledCart = state.cartList.map((item) => {
+        if (item.id === action.payload.id) {
+          return { ...item, checked: !item.checked };
+        }
+        return item;
+      });
+
+      return { ...state, cartList: toggledCart };
     case types.CLEAR_CART:
       return {
         ...state,
