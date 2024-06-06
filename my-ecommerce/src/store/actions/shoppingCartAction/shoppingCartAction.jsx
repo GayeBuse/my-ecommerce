@@ -14,6 +14,13 @@ export const toggleCheckItemAction = (item) => {
     payload: item,
   };
 };
+<<<<<<< HEAD
+=======
+
+export const removeProductAction = (product) => {
+  return { type: REMOVE_CART_ITEM, payload: product };
+};
+>>>>>>> main
 
 export const removeProductAction = (product) => {
   return { type: REMOVE_CART_ITEM, payload: product };
