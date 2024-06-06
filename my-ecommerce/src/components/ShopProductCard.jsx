@@ -4,10 +4,12 @@ import {
   removeFromCart,
   toggleCheckItemAction,
 } from "../store/actions/shoppingCartAction/shoppingCartAction";
-
+import { useState } from "react";
 export default function ShopProductCard() {
   const cart = useSelector((store) => store.shoppingCart.cartList);
   const dispatch = useDispatch();
+  const [discountCode, setDiscountCode] = useState("");
+  const [discount, setDiscount] = useState(0);
 
   function productPlus(item) {
     dispatch(addToCart(item));
@@ -31,12 +33,12 @@ export default function ShopProductCard() {
     0
   );
   const shippingCost = 29.99; // Example shipping cost
-  const discount = 29.99; // Example discount
+  const discountt = 29.99; // Example discount
 
-  const grandTotal = totalPrice + shippingCost - discount;
+  const grandTotal = totalPrice + (shippingCost - discountt) - discount;
   function applyDiscount() {
     // Example discount logic, replace with your own validation logic
-    if (discountCode === "DISCOUNT10") {
+    if (discountCode === "indirim") {
       setDiscount(10);
     } else {
       setDiscount(0);
@@ -132,9 +134,23 @@ export default function ShopProductCard() {
               Kargo Toplamı: ${shippingCost.toFixed(2)}
             </p>
             <p className="text-lg text-gray-500 ">
-              150 TL ve Üzeri Kargo <br></br> Bedava: -${discount.toFixed(2)}
+              150 TL ve Üzeri Kargo <br></br> Bedava: -${discountt.toFixed(2)}
             </p>
-
+            <div className="flex items-center mb-4">
+              <input
+                type="text"
+                value={discountCode}
+                onChange={(e) => setDiscountCode(e.target.value)}
+                placeholder="İndirim Kodu Girin"
+                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              />
+              <button
+                onClick={applyDiscount}
+                className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md"
+              >
+                İndirimi Uygula
+              </button>
+            </div>
             <hr className="my-4" />
             <p className="text-xl font-bold mt-2">
               Toplam: ${grandTotal.toFixed(2)}
