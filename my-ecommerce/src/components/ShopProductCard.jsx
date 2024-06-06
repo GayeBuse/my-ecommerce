@@ -20,9 +20,6 @@ export default function ShopProductCard() {
   function removeProduct(item) {
     dispatch(removeFromCart(item.id));
   }
-  function removeProduct(item) {
-    dispatch(removeFromCart(item.id));
-  }
 
   function toggleCheckbox(item) {
     dispatch(toggleCheckItemAction(item));
@@ -121,31 +118,33 @@ export default function ShopProductCard() {
           <div className="text-center text-gray-500">Sepetinizde ürün yok</div>
         )}
       </div>
-      <div>
-        <div className=" p-8 border-2 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4">Sipariş Özeti</h2>
-          <p className="text-lg text-gray-500 mb-2">
-            Toplam Ürün: {totalItems}
-          </p>
-          <p className="text-lg text-gray-500 mb-2">
-            Ürünün Toplamı: ${totalPrice.toFixed(2)}
-          </p>
-          <p className="text-lg text-gray-500 mb-2">
-            Kargo Toplamı: ${shippingCost.toFixed(2)}
-          </p>
-          <p className="text-lg text-gray-500 ">
-            150 TL ve Üzeri Kargo <br></br> Bedava: -${discount.toFixed(2)}
-          </p>
+      {cart.length > 0 && (
+        <div>
+          <div className=" p-8 border-2 rounded-lg">
+            <h2 className="text-2xl font-bold mb-4">Sipariş Özeti</h2>
+            <p className="text-lg text-gray-500 mb-2">
+              Toplam Ürün: {totalItems}
+            </p>
+            <p className="text-lg text-gray-500 mb-2">
+              Ürünün Toplamı: ${totalPrice.toFixed(2)}
+            </p>
+            <p className="text-lg text-gray-500 mb-2">
+              Kargo Toplamı: ${shippingCost.toFixed(2)}
+            </p>
+            <p className="text-lg text-gray-500 ">
+              150 TL ve Üzeri Kargo <br></br> Bedava: -${discount.toFixed(2)}
+            </p>
 
-          <hr className="my-4" />
-          <p className="text-xl font-bold mt-2">
-            Toplam: ${grandTotal.toFixed(2)}
-          </p>
-          <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">
-            Sepeti Onayla >
-          </button>
+            <hr className="my-4" />
+            <p className="text-xl font-bold mt-2">
+              Toplam: ${grandTotal.toFixed(2)}
+            </p>
+            <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg">
+              Sepeti Onayla >
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
